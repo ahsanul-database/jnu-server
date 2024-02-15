@@ -1,0 +1,47 @@
+[
+        {
+            "date": "29/01/2024",
+            "courseCode": "CSER-1209",
+            "courseName": "Economics"
+        },
+        {
+            "date": "04/02/2024",
+            "courseCode": "CSE-1208",
+            "courseName": "Discrete Mathematics"
+        },
+        {
+            "date": "08/02/2024",
+            "courseCode": "CSER-1207",
+            "courseName": "Mathematics-II(Linear Algebra)"
+        },
+        {
+            "date": "12/02/2024",
+            "courseCode": "CSE-1203",
+            "courseName": "Basic Electronics"
+        },
+        {
+            "date": "15/02/2024",
+            "courseCode": "CSEL-1204",
+            "courseName": "Basic Electronics Lab"
+        },
+        {
+            "date": "19/02/2024",
+            "courseCode": "CSE-1205",
+            "courseName": "Data Structure"
+        },
+        {
+            "date": "22/02/2024",
+            "courseCode": "CSEL-1206",
+            "courseName": "Data Structure Lab"
+        },
+        {
+            "date": "28/02/2024",
+            "courseCode": "CSE-1201",
+            "courseName": "Object Oriented Programming"
+        },
+        {
+            "date": "04/03/2024",
+            "courseCode": "CSEL-1202",
+            "courseName": "Object Oriented Programming Lab"
+        }
+]

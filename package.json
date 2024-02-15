@@ -1,0 +1,18 @@
+{
+  "name": "cse-jnu-server",
+  "version": "0.0.3",
+  "description": "this is our server side code of cse-jnu app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahsanul Hoque",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0"
+  }
+}
