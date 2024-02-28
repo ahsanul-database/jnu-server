@@ -15,18 +15,18 @@ app.get("/", (req, res) => {
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-// const uri = "mongodb://0.0.0.0:27017/";
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1ranzbu.mongodb.net/?retryWrites=true&w=majority`;
+const uri = "mongodb://0.0.0.0:27017/";
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1ranzbu.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-// const client = new MongoClient(uri);
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//     version: ServerApiVersion.v1,
+//     strict: true,
+//     deprecationErrors: true,
+//   },
+// });
+const client = new MongoClient(uri);
 
 async function run() {
   try {
@@ -34,6 +34,7 @@ async function run() {
     await client.connect();
     const allInformation = client.db("allInformation");
     const cse13batch = allInformation.collection("cse13batch");
+    const allnotes = allInformation.collection("notes");
 
     // all get functions are here
     app.get("/allDataofCSE13", async (req, res) => {
@@ -46,6 +47,15 @@ async function run() {
       const cursor = cse13batch.find({}, { projection: { email: 1, id: 1 } });
       const students = await cursor.toArray();
       res.send(students);
+    });
+
+    app.get("/getMySpecificInfoUsingMail", async (req, res) => {
+      const query = req.query.email;
+      const data = await cse13batch.findOne(
+        { email: query },
+        { projection: { id: 1, name: 1 } }
+      );
+      res.send(data);
     });
 
     app.get("/allDataofCSE13ID", async (req, res) => {
@@ -101,7 +111,19 @@ async function run() {
       const result = await cse13batch.replaceOne(filter, document);
       res.send(result);
     });
+    // --------------------- Notes function -------------------------
+    app.get("/allNotesbybatch13", async (req, res) => {
+      const cursor = allnotes.find({});
+      const notes = await cursor.toArray();
+      res.send(notes);
+    });
 
+    app.post("/addYourNotesinDB", async (req, res) => {
+      const data = req.body;
+      const result = await allnotes.insertOne(data);
+      res.send(result);
+      console.log(data);
+    });
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
