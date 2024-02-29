@@ -35,8 +35,9 @@ async function run() {
     const allInformation = client.db("allInformation");
     const cse13batch = allInformation.collection("cse13batch");
     const allnotes = allInformation.collection("notes");
+    const allNotices = allInformation.collection("notices");
 
-    // all get functions are here
+    // all functions related to students are here -------------------
     app.get("/allDataofCSE13", async (req, res) => {
       const cursor = cse13batch.find({});
       const students = await cursor.toArray();
@@ -124,6 +125,63 @@ async function run() {
       res.send(result);
       console.log(data);
     });
+
+    // ----------------- All notice related function are here -------------------------
+    app.get("/allNotices", async (req, res) => {
+      const cursor = allNotices.find({});
+      const notices = await cursor.toArray();
+      res.send(notices);
+    });
+    // get for those notice which are upcoming ----------------
+    const randomColor = () => {
+      // hexaCharacter = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
+      hexaCharacter = ["A", "B", 1, "D", 6, "E", "F"];
+      function getC(x) {
+        return hexaCharacter[x];
+      }
+      let code = "#";
+      for (let i = 0; i < 6; i++) {
+        let position = Math.floor(Math.random() * hexaCharacter.length);
+        code += getC(position);
+      }
+      return code;
+    };
+
+    app.get("/upcomingNotices", async (req, res) => {
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, "0");
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const yyyy = today.getFullYear();
+
+      const currentDate = new Date(`${yyyy}/${mm}/${dd}`);
+      const Postion = () => {
+        const list = [5, 10, 16, 20, 28, 36];
+        const value = Math.floor(Math.random() * list.length);
+
+        return list[value];
+      };
+
+      const allNotice = allNotices.find({});
+      let UpComingNotices = [];
+      const noticesD = await allNotice.toArray();
+      for (let i of noticesD) {
+        const l = Postion();
+        const t = Postion();
+        if (new Date(i.date) >= currentDate) {
+          i.left = l;
+          i.top = t;
+          i.bgcolor = randomColor();
+          UpComingNotices.push(i);
+        }
+      }
+      res.send(UpComingNotices);
+
+      // const cursor = allNotices.find({ date: { $gte: currentDate } });
+      // const notices = await cursor.toArray();
+      // res.send(notices);
+    });
+
+    // --------------------------------------------------
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(

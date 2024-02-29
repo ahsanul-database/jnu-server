@@ -1,0 +1,47 @@
+[
+  {
+    "type": "Semester Final Exam",
+    "date": "2024/03/19",
+    "time": "12:30 PM",
+    "room": "712",
+    "course": "CSE 1208 : Discrete Mathematics",
+    "courseTeacher": "Selina Mam",
+    "tag": ["mid", "class"],
+    "title": "Discrete Mathematics Final Exam",
+    "description": [
+      "All students are requested to attend the final exam of Discrete Mathematics.",
+      "The exam will be held in room 712 at 12:30 PM.",
+      "Syllabus for this are chapter 1 to 13"
+    ]
+  },
+  {
+    "type": "Semester Final Exam",
+    "date": "2024/03/19",
+    "time": "12:30 PM",
+    "room": "712",
+    "course": "CSE 1208 : Discrete Mathematics",
+    "courseTeacher": "Selina Mam",
+    "tag": ["selina mam", "class"],
+    "title": "Discrete Mathematics Final Exam",
+    "description": [
+      "All students are requested to attend the final exam of Discrete Mathematics.",
+      "The exam will be held in room 712 at 12:30 PM.",
+      "Syllabus for this are chapter 1 to 13"
+    ]
+  },
+  {
+    "type": "Semester Final Exam",
+    "date": "2024/03/19",
+    "time": "12:30 PM",
+    "room": "712",
+    "course": "CSE 1208 : Discrete Mathematics",
+    "courseTeacher": "Selina Mam",
+    "tag": ["semester final", "class"],
+    "title": "Discrete Mathematics Final Exam",
+    "description": [
+      "All students are requested to attend the final exam of Discrete Mathematics.",
+      "The exam will be held in room 712 at 12:30 PM.",
+      "Syllabus for this are chapter 1 to 13"
+    ]
+  }
+]
