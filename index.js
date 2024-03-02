@@ -43,6 +43,17 @@ async function run() {
       const students = await cursor.toArray();
       res.send(students);
     });
+    app.get("/getSortedDataofBatch13", async (req, res) => {
+      let sortBy = req.query.sort;
+      const query = {};
+      const options = {
+        collation: { locale: "en", strength: 2 },
+        sort: { name: sortBy === "asc" ? 1 : sortBy === "dsc" && -1 },
+      };
+      const cursor = cse13batch.find(query, options);
+      const students = await cursor.toArray();
+      res.json(students);
+    });
 
     app.get("/allStudentsMailID", async (req, res) => {
       const cursor = cse13batch.find({}, { projection: { email: 1, id: 1 } });
@@ -93,7 +104,6 @@ async function run() {
       const data = req.body;
       const result = await cse13batch.insertOne(data);
       res.send(result);
-      console.log(data);
     });
 
     // all put/patch functions are here
@@ -123,7 +133,7 @@ async function run() {
       const data = req.body;
       const result = await allnotes.insertOne(data);
       res.send(result);
-      console.log(data);
+      // console.log(data);
     });
 
     // ----------------- All notice related function are here -------------------------
@@ -179,6 +189,12 @@ async function run() {
       // const cursor = allNotices.find({ date: { $gte: currentDate } });
       // const notices = await cursor.toArray();
       // res.send(notices);
+    });
+    app.post("/addNewNotice", async (req, res) => {
+      const data = req.body;
+      const result = await allNotices.insertOne(data);
+      res.send(result);
+      // console.log(data);
     });
 
     // --------------------------------------------------
